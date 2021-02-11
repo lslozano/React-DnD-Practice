@@ -17,9 +17,10 @@ const DragBox = () => {
   return (
     <Draggable onDrag={onDrag}>
       <BoardContainer>
-        <div>Here is my position!</div>
+        <h1>Board Widget Example</h1>
         <div>
-          x: {position.x.toFixed(0)}, y: {position.y.toFixed(0)}
+          <h3>Content</h3>
+          <p>x: {position.x.toFixed(0)}, y: {position.y.toFixed(0)}</p>
         </div>
       </BoardContainer>
     </Draggable>

@@ -8,7 +8,7 @@ const Main = () => {
   return (
     <MainContainer>
       <Sidebar />
-      <div className="boards__wrapper">
+      <div className="boards__container">
         <Board />
       </div>
     </MainContainer>
