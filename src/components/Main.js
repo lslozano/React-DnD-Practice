@@ -32,13 +32,13 @@ const Main = () => {
       initialWidgetState.columns[destination.droppableId];
 
     if (sourceColumn === destinationColumn) {
-      const newTaskIds = Array.from(sourceColumn.taskIds);
+      const newTaskIds = Array.from(sourceColumn.widgetIds);
       newTaskIds.splice(source.index, 1);
       newTaskIds.splice(destination.index, 0, draggableId);
 
       const newColumn = {
         ...sourceColumn,
-        taskIds: newTaskIds,
+        widgetIds: newTaskIds,
       };
 
       const newState = {
@@ -54,18 +54,18 @@ const Main = () => {
       return;
     }
 
-    const startTaskIds = Array.from(sourceColumn.taskIds);
+    const startTaskIds = Array.from(sourceColumn.widgetIds);
     startTaskIds.splice(source.index, 1);
     const newStart = {
       ...sourceColumn,
-      taskIds: startTaskIds,
+      widgetIds: startTaskIds,
     };
 
-    const finishTaskIds = Array.from(destinationColumn.taskIds);
+    const finishTaskIds = Array.from(destinationColumn.widgetIds);
     finishTaskIds.splice(destination.index, 0, draggableId);
     const newFinish = {
       ...destinationColumn,
-      taskIds: finishTaskIds,
+      widgetIds: finishTaskIds,
     };
 
     const newState = {
@@ -85,15 +85,15 @@ const Main = () => {
     <MainContainer>
       <Sidebar />
       <div className="widgets__container">
-        <DragDropContext onDragEnd={onDragEnd}>
+        <DragDropContext onDragEnd={onDragEnd} direction="horizontal">
           <WidgetsColumns>
             {initialWidgetState.columnOrder.map((columnId) => {
               const column = initialWidgetState.columns[columnId];
-              const tasks = column.taskIds.map(
-                (taskId) => initialWidgetState.tasks[taskId]
+              const widgets = column.widgetIds.map(
+                (widgetId) => initialWidgetState.widgets[widgetId]
               );
 
-              return <WidgetColumn key={column.id} columns={column} tasks={tasks} />;
+              return <WidgetColumn key={column.id} columns={column} widgets={widgets} />;
             })}
           </WidgetsColumns>
         </DragDropContext>

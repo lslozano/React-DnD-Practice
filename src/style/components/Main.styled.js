@@ -6,7 +6,8 @@ const MainContainer = styled.div`
 
   .widgets__container {
     padding: 50px 0 0 25px;
-    width: 80%;
+    height: 730px;
+    overflow: scroll;
   }
 `;
 
