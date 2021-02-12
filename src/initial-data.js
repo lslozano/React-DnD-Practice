@@ -15,13 +15,13 @@ const initialData = {
       title: "Widgets 2",
       taskIds: [],
     },
-    "column-3": {
-      id: "column-3",
-      title: "Widgets 3",
-      taskIds: [],
-    },
+    // "column-3": {
+    //   id: "column-3",
+    //   title: "Widgets 3",
+    //   taskIds: [],
+    // },
   },
-  columnOrder: ["column-1", "column-2", "column-3"],
+  columnOrder: ["column-1", "column-2"],
 };
 
 export default initialData;

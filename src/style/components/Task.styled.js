@@ -12,7 +12,7 @@ const TaskContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: scroll;
 `;
 
 export default TaskContainer;

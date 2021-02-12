@@ -21,6 +21,7 @@ export const TaskListContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  ${'' /* flex-direction: row; */}
 
   min-height: 100px;
   flex-grow: 1;
