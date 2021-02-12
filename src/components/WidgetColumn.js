@@ -7,7 +7,7 @@ import {
   WidgetTitleContainer,
   WidgetListContainer,
 } from "../style/components/WidgetColumn.styled";
-import Task from "./Task";
+import Widget from "./Widget";
 
 const WidgetColumn = ({ columns, widgets }) => {
   return (
@@ -20,7 +20,7 @@ const WidgetColumn = ({ columns, widgets }) => {
             {...provided.droppableProps}
           >
             {widgets.map((widget, index) => (
-              <Task key={widget.id} task={widget} index={index} />
+              <Widget key={widget.id} widget={widget} index={index} />
             ))}
             {provided.placeholder}
           </WidgetListContainer>

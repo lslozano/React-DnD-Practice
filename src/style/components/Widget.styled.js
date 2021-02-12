@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const TaskContainer = styled.div`
+const WidgetContainer = styled.div`
   background-color: #fff;
   border: 1px solid lightgrey;
   border-radius: 2px;
@@ -14,4 +14,4 @@ const TaskContainer = styled.div`
   align-items: center;
 `;
 
-export default TaskContainer;
+export default WidgetContainer;

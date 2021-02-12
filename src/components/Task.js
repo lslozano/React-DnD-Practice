@@ -2,7 +2,7 @@ import React from "react";
 
 import { Draggable } from "react-beautiful-dnd";
 
-import TaskContainer from "../style/components/Task.styled";
+import TaskContainer from "../style/components/Widget.styled";
 
 const Task = ({ task, index }) => {
   return (

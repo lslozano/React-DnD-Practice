@@ -8,7 +8,7 @@ import WidgetColumn from "./WidgetColumn";
 
 import { DragDropContext } from "react-beautiful-dnd";
 
-import initialWidgetData from "../initial-data";
+import initialWidgetData from "../initialWidgetData";
 
 const Main = () => {
   const [initialWidgetState, setState] = useState(initialWidgetData);
@@ -32,13 +32,13 @@ const Main = () => {
       initialWidgetState.columns[destination.droppableId];
 
     if (sourceColumn === destinationColumn) {
-      const newTaskIds = Array.from(sourceColumn.widgetIds);
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
+      const newWidgetIds = Array.from(sourceColumn.widgetIds);
+      newWidgetIds.splice(source.index, 1);
+      newWidgetIds.splice(destination.index, 0, draggableId);
 
       const newColumn = {
         ...sourceColumn,
-        widgetIds: newTaskIds,
+        widgetIds: newWidgetIds,
       };
 
       const newState = {
@@ -54,18 +54,18 @@ const Main = () => {
       return;
     }
 
-    const startTaskIds = Array.from(sourceColumn.widgetIds);
-    startTaskIds.splice(source.index, 1);
+    const startWidgetIds = Array.from(sourceColumn.widgetIds);
+    startWidgetIds.splice(source.index, 1);
     const newStart = {
       ...sourceColumn,
-      widgetIds: startTaskIds,
+      widgetIds: startWidgetIds,
     };
 
-    const finishTaskIds = Array.from(destinationColumn.widgetIds);
-    finishTaskIds.splice(destination.index, 0, draggableId);
+    const finishWidgetIds = Array.from(destinationColumn.widgetIds);
+    finishWidgetIds.splice(destination.index, 0, draggableId);
     const newFinish = {
       ...destinationColumn,
-      widgetIds: finishTaskIds,
+      widgetIds: finishWidgetIds,
     };
 
     const newState = {
