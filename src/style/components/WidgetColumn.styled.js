@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
-export const ColumnContainer = styled.div`
-  width: 20%;
+export const WidgetColumnContainer = styled.div`
+  width: 90%;
 
   margin: 8px;
   border: 1px solid lightgrey;
@@ -10,20 +10,22 @@ export const ColumnContainer = styled.div`
 
   display: flex;
   flex-direction: column;
+  max-height: 700px;
 `;
 
-export const TitleContainer = styled.h3`
+export const WidgetTitleContainer = styled.h3`
   padding: 8px;
 `;
 
-export const TaskListContainer = styled.div`
+export const WidgetListContainer = styled.div`
   padding: 8px;
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   ${'' /* flex-direction: row; */}
 
   min-height: 100px;
-  flex-grow: 1;
+  max-height: 100%;
+  ${'' /* flex-grow: 1; */}
 `;
 

@@ -6,13 +6,12 @@ const TaskContainer = styled.div`
   border-radius: 2px;
   padding: 8px;
   margin: 25px 25px 0 0;
-  width: 100%;
+  width: 200px;
   height: 200px;
 
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: scroll;
 `;
 
 export default TaskContainer;
