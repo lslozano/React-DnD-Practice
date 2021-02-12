@@ -1,11 +1,15 @@
 import styled from "styled-components";
 
 export const ColumnContainer = styled.div`
-  width: 85vw;
+  width: 20%;
 
   margin: 8px;
   border: 1px solid lightgrey;
   border-radius: 2px;
+  background-color: white;
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const TitleContainer = styled.h3`
@@ -13,13 +17,12 @@ export const TitleContainer = styled.h3`
 `;
 
 export const TaskListContainer = styled.div`
-  flex-wrap: wrap;
-
   padding: 8px;
 
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
   min-height: 100px;
+  flex-grow: 1;
 `;
 
