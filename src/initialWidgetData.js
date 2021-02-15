@@ -1,7 +1,7 @@
 const initialWidgetData = {
   widgets: {
-    "widget-1": { id: "widget-1", content: "Take out the garbage" },
-    "widget-2": { id: "widget-2", content: "Watch my favorite show" }
+    "widget-1": { id: "widget-1", title: "Widget-1", content: "Take out the garbage", img: "/infographicimg.png"},
+    "widget-2": { id: "widget-2", title: "Widget-2", content: "Watch my favorite show", img: "/infographicimg.png"}
     // "widget-3": { id: "widget-3", content: "Charge my phone" }
     // "task-4": { id: "task-4", content: "Workout" },
   },

@@ -8,14 +8,18 @@ const Widget = ({ widget, index }) => {
   return (
     <Draggable draggableId={widget.id} index={index}>
       {(provided) => (
-        <WidgetContainer 
+        <WidgetContainer
           {...provided.draggableProps}
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <h3>{widget.title}</h3>
-          <div className="widget__info">
-            <img className="widget__graphic" src={widget.img} alt="infographic" />
+          <h3 className="widget__title">{widget.title}</h3>
+          <div className="widget__content">
+            <img
+              className="widget__graphic"
+              src={widget.img}
+              alt="infographic"
+            />
             <ul className="widget__list">
               <li>Alcance total</li>
               <li>Alcance real</li>
