@@ -7,6 +7,8 @@ const Sidebar = ({ widgetsData, setWidgetsState }) => {
 
   const addWidget = () => {
 
+    const widgetIdsArray = widgetsData.columns["column-1"].widgetIds;
+
     const newWidget = {
       ...widgetsData,
       widgets: {
@@ -23,7 +25,7 @@ const Sidebar = ({ widgetsData, setWidgetsState }) => {
         "column-1": {
           id: "column-1",
           title: "Widgets 1",
-          widgetIds: ["widget-1", "widget-2", "widget-3"],
+          widgetIds: [...widgetIdsArray, `widget-${size +1}`],
         },
       },
       columnOrder: ["column-1"],
