@@ -18,13 +18,15 @@ const Sidebar = ({ widgetsData, setWidgetsState }) => {
           img: "/infographicimg.png",
         },
       },
-      // columns: {
-      //   ...widgetsData.columns,
-      //   "column-1": {
-      //     widgetIds: ["widget-1", "widget-2", "widget-3"],
-      //   },
-      // },
-      // columnOrder: ["column-1"],
+      columns: {
+        ...widgetsData.columns,
+        "column-1": {
+          id: "column-1",
+          title: "Widgets 1",
+          widgetIds: ["widget-1", "widget-2", "widget-3"],
+        },
+      },
+      columnOrder: ["column-1"],
     };
 
     setWidgetsState(newWidget);
