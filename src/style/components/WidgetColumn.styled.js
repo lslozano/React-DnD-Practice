@@ -4,9 +4,9 @@ export const WidgetColumnContainer = styled.div`
   width: 90%;
 
   margin: 8px;
-  ${'' /* border: 1px solid lightgrey;
+  border: 1px solid lightgrey;
   border-radius: 2px;
-  background-color: white; */}
+  background-color: white;
 
   display: flex;
   flex-direction: column;

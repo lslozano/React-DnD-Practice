@@ -8,10 +8,10 @@ import WidgetColumn from "./WidgetColumn";
 
 import { DragDropContext } from "react-beautiful-dnd";
 
-import initialWidgetData from "../initialWidgetData";
+import initialWidgetsData from "../initialWidgetsData";
 
 const Main = () => {
-  const [initialWidgetState, setState] = useState(initialWidgetData);
+  const [initialWidgetsState, setWidgetsState] = useState(initialWidgetsData);
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -27,9 +27,9 @@ const Main = () => {
       return;
     }
 
-    const sourceColumn = initialWidgetState.columns[source.droppableId];
+    const sourceColumn = initialWidgetsState.columns[source.droppableId];
     const destinationColumn =
-      initialWidgetState.columns[destination.droppableId];
+      initialWidgetsState.columns[destination.droppableId];
 
     if (sourceColumn === destinationColumn) {
       const newWidgetIds = Array.from(sourceColumn.widgetIds);
@@ -42,15 +42,15 @@ const Main = () => {
       };
 
       const newState = {
-        ...initialWidgetState,
+        ...initialWidgetsState,
         columns: {
-          ...initialWidgetState.columns,
+          ...initialWidgetsState.columns,
           [newColumn.id]: newColumn,
         },
       };
 
       console.log(newState);
-      setState(newState);
+      setWidgetsState(newState);
       return;
     }
 
@@ -69,28 +69,28 @@ const Main = () => {
     };
 
     const newState = {
-      ...initialWidgetState,
+      ...initialWidgetsState,
       columns: {
-        ...initialWidgetState.columns,
+        ...initialWidgetsState.columns,
         [newStart.id]: newStart,
         [newFinish.id]: newFinish,
       },
     };
 
-    setState(newState);
+    setWidgetsState(newState);
     return;
   };
 
   return (
     <MainContainer>
-      <Sidebar />
+      <Sidebar widgetsData={initialWidgetsState} setWidgetsState={setWidgetsState} />
       <div className="widgets__container">
         <DragDropContext onDragEnd={onDragEnd} direction="horizontal">
           <WidgetsColumns>
-            {initialWidgetState.columnOrder.map((columnId) => {
-              const column = initialWidgetState.columns[columnId];
+            {initialWidgetsState.columnOrder.map((columnId) => {
+              const column = initialWidgetsState.columns[columnId];
               const widgets = column.widgetIds.map(
-                (widgetId) => initialWidgetState.widgets[widgetId]
+                (widgetId) => initialWidgetsState.widgets[widgetId]
               );
 
               return <WidgetColumn key={column.id} columns={column} widgets={widgets} />;
