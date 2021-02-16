@@ -5,10 +5,33 @@ import SidebarContainer from "../style/components/Sidebar.styled";
 const Sidebar = ({ widgetsData, setWidgetsState }) => {
   const addWidget = () => {
     let widgetsCount = Object.keys(widgetsData.widgets).length;
-
     const widgetIdsArray = widgetsData.columns["column-1"].widgetIds;
 
-    if (widgetsCount === 2) {
+    if (widgetsCount === 0 || widgetsCount < 3) {
+      const newWidget = {
+        ...widgetsData,
+        widgets: {
+          ...widgetsData.widgets,
+          [`widget-${widgetsCount + 1}`]: {
+            id: `widget-${widgetsCount + 1}`,
+            title: `Widget-${widgetsCount + 1}`,
+            content: "Random content",
+            img: "/infographicimg.png",
+          },
+        },
+        columns: {
+          ...widgetsData.columns,
+          "column-1": {
+            id: "column-1",
+            title: "Widgets 1",
+            widgetIds: [...widgetIdsArray, `widget-${widgetsCount + 1}`],
+          },
+        },
+        columnOrder: ["column-1"],
+      };
+
+      setWidgetsState(newWidget);
+    } else if (widgetsCount === 3) {
       const newWidget = {
         ...widgetsData,
         widgets: {
@@ -33,6 +56,33 @@ const Sidebar = ({ widgetsData, setWidgetsState }) => {
 
       setWidgetsState(newWidget);
     }
+
+    // else if (widgetsCount > 2 && widgetsCount < 4) {
+    //   const widgetIdsArray = widgetsData.columns["column-2"].widgetIds;
+
+    //   const newWidget = {
+    //     ...widgetsData,
+    //     widgets: {
+    //       ...widgetsData.widgets,
+    //       [`widget-${widgetsCount + 1}`]: {
+    //         id: `widget-${widgetsCount + 1}`,
+    //         title: `Widget-${widgetsCount + 1}`,
+    //         content: "Random content",
+    //         img: "/infographicimg.png",
+    //       },
+    //     },
+    //     columns: {
+    //       ...widgetsData.columns,
+    //       "column-2": {
+    //         id: "column-2",
+    //         title: "Widgets 2",
+    //         widgetIds: [...widgetIdsArray, `widget-${widgetsCount + 1}`],
+    //       },
+    //     },
+    //     columnOrder: ["column-1", "column-2"],
+    //   };
+    //   setWidgetsState(newWidget);
+    // }
 
     // console.log(size);
     console.log(widgetsData.widgets);
