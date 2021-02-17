@@ -1,93 +1,115 @@
 import React from "react";
+// import initialWidgetData from "../initialWidgetsData";
 
 import SidebarContainer from "../style/components/Sidebar.styled";
 
-const Sidebar = ({ widgetsData, setWidgetsState }) => {
+const Sidebar = ({
+  widgetsData,
+  setWidgetsState,
+  widgetCounter,
+  setWidgetCounter,
+  widgetId,
+  setWidgetId,
+  columnId,
+  setColumnId,
+}) => {
   const addWidget = () => {
-    let widgetsCount = Object.keys(widgetsData.widgets).length;
-    const widgetIdsArray = widgetsData.columns["column-1"].widgetIds;
 
-    if (widgetsCount === 0 || widgetsCount < 3) {
+    if (widgetCounter === 0) {
+      setWidgetCounter((prevWidgetCounter) => prevWidgetCounter + 1);
+
       const newWidget = {
         ...widgetsData,
         widgets: {
           ...widgetsData.widgets,
-          [`widget-${widgetsCount + 1}`]: {
-            id: `widget-${widgetsCount + 1}`,
-            title: `Widget-${widgetsCount + 1}`,
+          [`widget-${widgetId}`]: {
+            id: `widget-${widgetId}`,
+            title: `Widget-${widgetId}`,
             content: "Random content",
             img: "/infographicimg.png",
           },
         },
         columns: {
           ...widgetsData.columns,
-          "column-1": {
-            id: "column-1",
-            title: "Widgets 1",
-            widgetIds: [...widgetIdsArray, `widget-${widgetsCount + 1}`],
+          [`column-${columnId}`]: {
+            id: `column-${columnId}`,
+            title: `Widgets ${widgetId}`,
+            widgetIds: [`widget-${widgetId}`],
           },
         },
-        columnOrder: ["column-1"],
+        columnOrder: [`column-${columnId}`],
       };
 
       setWidgetsState(newWidget);
-    } else if (widgetsCount === 3) {
+      setWidgetId((prevWidgetId) => prevWidgetId + 1);
+    } else if (widgetCounter >= 1 && widgetCounter % 2 !== 0) {
+      setWidgetCounter((prevWidgetCounter) => prevWidgetCounter + 1);
+
+      const widgetIdsArray = widgetsData.columns[`column-${columnId}`].widgetIds;
+      const columnIdsArray = widgetsData.columnOrder;
+
       const newWidget = {
         ...widgetsData,
         widgets: {
           ...widgetsData.widgets,
-          [`widget-${widgetsCount + 1}`]: {
-            id: `widget-${widgetsCount + 1}`,
-            title: `Widget-${widgetsCount + 1}`,
+          [`widget-${widgetId}`]: {
+            id: `widget-${widgetId}`,
+            title: `Widget-${widgetId}`,
             content: "Random content",
             img: "/infographicimg.png",
           },
         },
         columns: {
           ...widgetsData.columns,
-          "column-2": {
-            id: "column-2",
-            title: "Widgets 2",
-            widgetIds: [`widget-${widgetsCount + 1}`],
+          [`column-${columnId}`]: {
+            id: `column-${columnId}`,
+            title: `Widgets ${widgetId}`,
+            widgetIds: [...widgetIdsArray, `widget-${widgetId}`],
           },
         },
-        columnOrder: ["column-1", "column-2"],
+        columnOrder: [...columnIdsArray],
       };
 
       setWidgetsState(newWidget);
+      setWidgetId((prevWidgetId) => prevWidgetId + 1);
+      setColumnId((prevColumnId) => prevColumnId + 1);
+    } else if (widgetCounter >= 1 && widgetCounter % 2 === 0) {
+      setWidgetCounter((prevWidgetCounter) => prevWidgetCounter + 1);
+
+      const columnIdsArray = widgetsData.columnOrder;
+
+      const newWidget = {
+        ...widgetsData,
+        widgets: {
+          ...widgetsData.widgets,
+          [`widget-${widgetId}`]: {
+            id: `widget-${widgetId}`,
+            title: `Widget-${widgetId}`,
+            content: "Random content",
+            img: "/infographicimg.png",
+          },
+        },
+        columns: {
+          ...widgetsData.columns,
+          [`column-${columnId}`]: {
+            id: `column-${columnId}`,
+            title: `Widgets ${widgetId}`,
+            widgetIds: [`widget-${widgetId}`],
+          },
+        },
+        columnOrder: [...columnIdsArray, `column-${columnId}`],
+      };
+
+      setWidgetsState(newWidget);
+      setWidgetId((prevWidgetId) => prevWidgetId + 1);
     }
+  };
 
-    // else if (widgetsCount > 2 && widgetsCount < 4) {
-    //   const widgetIdsArray = widgetsData.columns["column-2"].widgetIds;
-
-    //   const newWidget = {
-    //     ...widgetsData,
-    //     widgets: {
-    //       ...widgetsData.widgets,
-    //       [`widget-${widgetsCount + 1}`]: {
-    //         id: `widget-${widgetsCount + 1}`,
-    //         title: `Widget-${widgetsCount + 1}`,
-    //         content: "Random content",
-    //         img: "/infographicimg.png",
-    //       },
-    //     },
-    //     columns: {
-    //       ...widgetsData.columns,
-    //       "column-2": {
-    //         id: "column-2",
-    //         title: "Widgets 2",
-    //         widgetIds: [...widgetIdsArray, `widget-${widgetsCount + 1}`],
-    //       },
-    //     },
-    //     columnOrder: ["column-1", "column-2"],
-    //   };
-    //   setWidgetsState(newWidget);
-    // }
-
-    // console.log(size);
-    console.log(widgetsData.widgets);
-    console.log(widgetsData.columns["column-1"].widgetIds);
-    console.log(widgetsData.columnOrder);
+  const deleteAllWidgets = () => {
+    setWidgetsState({});
+    setWidgetCounter(0);
+    setWidgetId(1);
+    setColumnId(1);
   };
 
   return (
@@ -96,7 +118,9 @@ const Sidebar = ({ widgetsData, setWidgetsState }) => {
         <li className="sidebar__option">
           <button onClick={addWidget}>Add widget</button>
         </li>
-        <li className="sidebar__option">Sidebar Link</li>
+        <li className="sidebar__option">
+          <button onClick={deleteAllWidgets}>Delete all Widgets</button>
+        </li>
         <li className="sidebar__option">Sidebar Link</li>
         <li className="sidebar__option">Sidebar Link</li>
         <li className="sidebar__option">Sidebar Link</li>

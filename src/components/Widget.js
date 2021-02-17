@@ -4,7 +4,15 @@ import { Draggable } from "react-beautiful-dnd";
 
 import WidgetContainer from "../style/components/Widget.styled";
 
-const Widget = ({ widget, index }) => {
+const Widget = ({ widget, index, widgetsState, setWidgetsState }) => {
+
+  const deleteWidget = () => {
+    const widgetId = widget.id;
+    setWidgetsState(prevWidgetsState => {
+      delete prevWidgetsState.widgets[widgetId];
+    })
+  };
+
   return (
     <Draggable draggableId={widget.id} index={index}>
       {(provided) => (
@@ -13,7 +21,10 @@ const Widget = ({ widget, index }) => {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          <h3 className="widget__title">{widget.title}</h3>
+          <div className="widget__header">
+            <h3 className="widget__title">{widget.title}</h3>
+            <button className="widget__delete" onClick={deleteWidget}>Delete widget</button>
+          </div>
           <div className="widget__content">
             <img
               className="widget__graphic"

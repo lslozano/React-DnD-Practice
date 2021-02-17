@@ -4,15 +4,13 @@ import { Droppable } from "react-beautiful-dnd";
 
 import {
   WidgetColumnContainer,
-  // WidgetTitleContainer,
   WidgetListContainer,
 } from "../style/components/WidgetColumn.styled";
 import Widget from "./Widget";
 
-const WidgetColumn = ({ columns, widgets }) => {
+const WidgetColumn = ({ columns, widgets, widgetsState, setWidgetsState }) => {
   return (
     <WidgetColumnContainer>
-      {/* <WidgetTitleContainer>{columns.title}</WidgetTitleContainer> */}
       <Droppable droppableId={columns.id} direction="horizontal">
         {(provided) => (
           <WidgetListContainer
@@ -20,7 +18,13 @@ const WidgetColumn = ({ columns, widgets }) => {
             {...provided.droppableProps}
           >
             {widgets.map((widget, index) => (
-              <Widget key={widget.id} widget={widget} index={index} />
+              <Widget
+                key={widget.id}
+                widget={widget}
+                index={index}
+                widgetsState={widgetsState}
+                setWidgetsState={setWidgetsState}
+              />
             ))}
             {provided.placeholder}
           </WidgetListContainer>

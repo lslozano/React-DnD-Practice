@@ -12,6 +12,9 @@ import initialWidgetsData from "../initialWidgetsData";
 
 const Main = () => {
   const [initialWidgetsState, setWidgetsState] = useState(initialWidgetsData);
+  const [widgetCounter, setWidgetCounter] = useState(0);
+  const [widgetId, setWidgetId] = useState(1);
+  const [columnId, setColumnId] = useState(1);
 
   const onDragEnd = (result) => {
     const { destination, source, draggableId } = result;
@@ -83,18 +86,39 @@ const Main = () => {
 
   return (
     <MainContainer>
-      <Sidebar widgetsData={initialWidgetsState} setWidgetsState={setWidgetsState} />
+      <Sidebar
+        widgetsData={initialWidgetsState}
+        setWidgetsState={setWidgetsState}
+        widgetCounter={widgetCounter}
+        setWidgetCounter={setWidgetCounter}
+        widgetId={widgetId}
+        setWidgetId={setWidgetId}
+        columnId={columnId}
+        setColumnId={setColumnId}
+      />
       <div className="widgets__container">
         <DragDropContext onDragEnd={onDragEnd} direction="horizontal">
           <WidgetsColumns>
-            {initialWidgetsState.columnOrder.map((columnId) => {
-              const column = initialWidgetsState.columns[columnId];
-              const widgets = column.widgetIds.map(
-                (widgetId) => initialWidgetsState.widgets[widgetId]
-              );
+            {Object.keys(initialWidgetsState).length === 0 ? (
+              <h1>No Widgets added</h1>
+            ) : (
+              initialWidgetsState.columnOrder.map((columnId) => {
+                const column = initialWidgetsState.columns[columnId];
+                const widgets = column.widgetIds.map(
+                  (widgetId) => initialWidgetsState.widgets[widgetId]
+                );
 
-              return <WidgetColumn key={column.id} columns={column} widgets={widgets} />;
-            })}
+                return (
+                  <WidgetColumn
+                    key={column.id}
+                    columns={column}
+                    widgets={widgets}
+                    widgetsState={initialWidgetsState}
+                    setWidgetsState={setWidgetsState}
+                  />
+                );
+              })
+            )}
           </WidgetsColumns>
         </DragDropContext>
       </div>

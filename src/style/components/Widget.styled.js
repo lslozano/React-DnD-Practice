@@ -12,8 +12,23 @@ const WidgetContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  .widget__title {
-    margin: 20px 0 40px 0;
+  .widget__header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    .widget__title {
+      margin: 20px 0 40px 0;
+    }
+
+    .widget__delete {
+      height: 30px;
+      padding: 0 15px;
+      margin: 20px 10px 0 0;
+      background-color: #ec4646;
+      border: none;
+      border-radius: 4px;
+      color: #fff;
+    }
   }
 
   .widget__content {
